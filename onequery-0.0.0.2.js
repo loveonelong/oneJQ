@@ -2,17 +2,17 @@
 (function (window, undefined) {
 
 
-  var oQuery = function(selector,context){
-    return new oQuery.fn.init(selector,context,rootoQuery);
+  var oneJQ = function(selector,context){
+    return new oneJQ.fn.init(selector,context,rootoneJQ);
   }
 
-  oQuery.fn = oQuery.prototype = {
-    init: function(selector,context,rootoQuery){
+  oneJQ.fn = oneJQ.prototype = {
+    init: function(selector,context,rootoneJQ){
 
     }
   }
 
-  oQuery.fn.init.prototype =oQuery.fn
+  oneJQ.fn.init.prototype =oneJQ.fn
 
   /**
    * options {参数}
@@ -22,7 +22,7 @@
    * contentType: 请求头部
    * data: 请求内容
    */
-  oQuery.ajax = function (options) {
+  oneJQ.ajax = function (options) {
 
     // 如果选项不存在或是不为对象类型
     if (!options || typeof options != 'object') {
@@ -43,6 +43,12 @@
 
     // 请求内容，默认为空对象
     var data = options.data || {}
+
+    // 成功回调
+    var success = options.success || null
+
+    // 不成功回掉
+    var error = options.error || null
 
     // IE5和IE6使用ActiveXObject
     var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP")
@@ -98,17 +104,17 @@
 
   }
 
-  oQuery.post = function (options) {
+  oneJQ.post = function (options) {
     options.type = 'POST'
     $.ajax(options)
   }
 
-  oQuery.get = function (options) {
+  oneJQ.get = function (options) {
     options.type = 'GET'
     $.ajax(options)
   }
 
   // 注册全局变量
-  window.oQuery === undefined && ( window.$ = oQuery)
+  window.oneJQ === undefined && ( window.$ = oneJQ)
 
 })(window);
